@@ -1,14 +1,13 @@
 #include <Adafruit_BMP085_U.h>
 
-// atmospheric pressure in hPa, ambient temperature in C
+// atmospheric pressure in Pa, ambient temperature in C
 
 Adafruit_BMP085_Unified bmp = Adafruit_BMP085_Unified(18001);
 
 void setup() {
   Serial.begin(115200);
   while (!bmp.begin()) {
-    /* There was a problem detecting the BMP085...
-    Serial.print("ERROR: no BMP085 detected!"); */
+    Serial.print("ERROR: no BMP085/180 detected!");
     delay(1000);
   }
 }
@@ -39,4 +38,3 @@ void loop() {
     else if (c=='h') print_pt();
   }
 }
-
