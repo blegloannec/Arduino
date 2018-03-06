@@ -3,7 +3,6 @@
 import sys, time, struct, serial
 import argparse
 
-
 # Config.
 PORT = '/dev/ttyACM0'
 BAUD = 115200
