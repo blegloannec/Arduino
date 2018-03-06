@@ -11,6 +11,7 @@ LOGD = '/home/bastien/.weather/'
 TMIN,TMAX = 10,30
 PMIN,PMAX = 950,1070
 INTERVAL = 60
+RETRY_ITVL = 3
 
 def perc(x,xmin,xmax):
     p = round(100.*(x-xmin)/(xmax-xmin))
@@ -48,8 +49,9 @@ def main():
             fp.write('%.1f\n' % P)
             fppc.write('%d\n' % perc(P,PMIN,PMAX))
         except:
-            sys.stderr.write('%s: lost\n' % timestamp())
-            pass
+            sys.stderr.write('%s: lost (retry in %ds)\n' % (timestamp(),RETRY_ITVL))
+            time.sleep(RETRY_ITVL)
+            continue
         time.sleep(args.interval)
 
 main()
